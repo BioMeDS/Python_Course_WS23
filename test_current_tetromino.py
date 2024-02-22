@@ -20,6 +20,7 @@ class TestCurrentTetromino(unittest.TestCase):
         for i,t in enumerate(expectation):
             self.tetris.reset_game(timer_div=i+1)
             self.assertEqual(current_tetromino(self.tetris), t)
+
     def test_tetrominos_L(self):
         expectation = "L"
         self.tetris.reset_game(timer_div=227)
