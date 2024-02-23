@@ -2,25 +2,25 @@
 from pyboy import PyBoy
 from pyboy import WindowEvent
 
-def piece_positioning(movement_left, a_rotations, pyboy):
+def piece_positioning(movement_left, a_rotations, pyboy, delay=3):
     for rotations in range(a_rotations):
         pyboy.send_input(WindowEvent.PRESS_BUTTON_A)
         pyboy.tick()
         pyboy.send_input(WindowEvent.RELEASE_BUTTON_A)
-        for _ in range(3): pyboy.tick()
+        for _ in range(delay): pyboy.tick()
 
     if movement_left > 0:
         for fields in range(movement_left):
             pyboy.send_input(WindowEvent.PRESS_ARROW_LEFT)
             pyboy.tick()
             pyboy.send_input(WindowEvent.RELEASE_ARROW_LEFT)
-            for _ in range(3): pyboy.tick()
+            for _ in range(delay): pyboy.tick()
     elif movement_left < 0:
         for fields in range(movement_left, 0):
             pyboy.send_input(WindowEvent.PRESS_ARROW_RIGHT)
             pyboy.tick()
             pyboy.send_input(WindowEvent.RELEASE_ARROW_RIGHT)
-            for _ in range(3): pyboy.tick()
+            for _ in range(delay): pyboy.tick()
 
 if __name__ == "__main__":
     pyboy = PyBoy("Tetris.gb", game_wrapper=True)
